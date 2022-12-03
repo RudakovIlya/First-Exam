@@ -14,14 +14,14 @@ type TelegramChatPropsType = {
 }
 
 const TelegramChat: React.FC<TelegramChatPropsType> = ({
-                                                                 messageText,
-                                                                 error,
-                                                                 countMessage,
-                                                                 addMessageCallback,
-                                                                 onChangeText,
-                                                                 onEnter,
-                                                                 clearInput
-                                                             }) => {
+                                                           messageText,
+                                                           error,
+                                                           countMessage,
+                                                           addMessageCallback,
+                                                           onChangeText,
+                                                           onEnter,
+                                                           clearInput
+                                                       }) => {
     return (
         <div className={styles.input}>
             <SuperInput error={error} value={messageText} onChange={onChangeText} onEnter={onEnter}/>

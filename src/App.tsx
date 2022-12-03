@@ -3,16 +3,15 @@ import './App.css';
 import Telegram from "./components/Telegram/Telegram";
 import {v1} from "uuid";
 
-
 export type MessageType = {
     id: string
     text: string
     likesCount: number
 }
 
-function App() {
+const App: React.FC = () => {
 
-    const [message, setList] = useState<Array<MessageType>>([]);
+    const [message, setList] = useState<MessageType[]>([]);
 
     const addMessage = (text: string) => {
         const newMessage: MessageType = {id: v1(), text, likesCount: 0};
