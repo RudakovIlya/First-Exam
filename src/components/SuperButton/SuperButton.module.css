@@ -1,0 +1,49 @@
+.button {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 0px 16px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    transition: all .3s ease;
+}
+
+.small {
+    width: 73px;
+    height: 26px;
+}
+
+.medium {
+    width: 78px;
+    height: 32px;
+}
+
+.large {
+    width: auto;
+    height: 40px;
+}
+
+.secondary {
+    background: #E5EBF1;
+    color: #55677D;
+}
+
+.outline {
+    border: 1px solid #7996B3;
+    color: #2A5885;
+}
+
+.primary {
+    background: #5181B8;
+    color: #FFFFFF;
+}
+
+.primary:hover, .secondary:hover, .outline:hover {
+    opacity: 0.5;
+}
+
+.disabled {
+    cursor: not-allowed;
+}

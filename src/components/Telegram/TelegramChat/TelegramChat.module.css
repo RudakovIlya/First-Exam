@@ -1,0 +1,11 @@
+.input {
+    display: flex;
+    column-gap: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.red {
+    color: #E64646;
+}
+

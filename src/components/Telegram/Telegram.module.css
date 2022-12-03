@@ -1,0 +1,18 @@
+.container {
+    border: 3px solid #5181B8;
+    border-radius: 16px;
+    padding: 15px;
+    min-height: 360px;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+.border-red {
+    border: 3px solid #E64646;
+}
+
+.title {
+    color: #5181B8;
+}
+
+

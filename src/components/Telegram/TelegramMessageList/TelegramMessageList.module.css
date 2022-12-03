@@ -1,0 +1,9 @@
+.list {
+    list-style: none;
+    padding: 20px 0 0 10px ;
+    margin: 0;
+}
+
+.red {
+    color: #E64646;
+}
