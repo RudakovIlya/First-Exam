@@ -3,6 +3,7 @@ import SuperInput from "../../SuperInput/SuperInput";
 import SuperButton from "../../SuperButton/SuperButton";
 import styles from './TelegramChat.module.css'
 
+
 type TelegramChatPropsType = {
     error: string
     messageText: string
@@ -22,6 +23,7 @@ const TelegramChat: React.FC<TelegramChatPropsType> = ({
                                                            onEnter,
                                                            clearInput
                                                        }) => {
+
     return (
         <div className={styles.input}>
             <SuperInput error={error} value={messageText} onChange={onChangeText} onEnter={onEnter}/>

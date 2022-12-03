@@ -1,5 +1,6 @@
 import React, {KeyboardEvent, DetailedHTMLProps, InputHTMLAttributes, ReactNode, ChangeEvent} from 'react';
 import styles from './SuperInput.module.css'
+import {useAutoAnimate} from "@formkit/auto-animate/react";
 
 type SuperInputDefaultType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
@@ -38,15 +39,16 @@ const SuperInput: React.FC<SuperInputPropsType> = ({
 
 
     const finalSpanClassName = `${error && styles.spanError}`;
-    const finalInputClassName = styles.input + ` ${error && styles.inputError}`
+    const finalInputClassName = styles.input + ` ${error && styles.inputError}`;
+    const [div] = useAutoAnimate<HTMLDivElement>()
     return (
-        <div className={styles.InputWrapper}>
+        <div ref={div} className={styles.InputWrapper}>
             <label className={styles.label} htmlFor={id}>{name}</label>
             <input id={id} className={finalInputClassName} onChange={onChangeInputText}
                    onKeyPress={onEnterHandlerCallBack}
                    type="text" {...restProps}/>
             {
-                error && <span className={finalSpanClassName}>{error}</span>
+                error && <span  className={finalSpanClassName}>{error}</span>
             }
         </div>
     );
