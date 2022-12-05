@@ -20,13 +20,13 @@ const SuperInput: React.FC<SuperInputPropsType> = ({
                                                        name,
                                                        onChange,
                                                        id,
-                                                       onKeyPress,
+                                                       onKeyDown,
                                                        onBlur,
                                                        ...restProps
                                                    }) => {
 
     const onEnterHandlerCallBack = (event: KeyboardEvent<HTMLInputElement>) => {
-        onKeyPress?.(event)
+        onKeyDown?.(event)
 
         onEnter && event.key === 'Enter' && onEnter();
     }
@@ -45,10 +45,10 @@ const SuperInput: React.FC<SuperInputPropsType> = ({
         <div ref={div} className={styles.InputWrapper}>
             <label className={styles.label} htmlFor={id}>{name}</label>
             <input id={id} className={finalInputClassName} onChange={onChangeInputText}
-                   onKeyPress={onEnterHandlerCallBack}
+                   onKeyDown={onEnterHandlerCallBack}
                    type="text" {...restProps}/>
             {
-                error && <span  className={finalSpanClassName}>{error}</span>
+                error && <span className={finalSpanClassName}>{error}</span>
             }
         </div>
     );

@@ -29,7 +29,6 @@ const Telegram: React.FC<TelegramPropsType> = ({addMessage, messages, deleteMess
         if (!trimmedMessage) {
             setError('Message is required!')
         } else {
-            // setCount((value) => value - 1);
             setCount(startValue - (messages.length + 1));
             addMessage(text.trim());
             setText('')
@@ -49,8 +48,10 @@ const Telegram: React.FC<TelegramPropsType> = ({addMessage, messages, deleteMess
         count && addMessageCallBack()
     }
 
+    const telegramClassName = `${styles.container} ${!count ? styles['border-error'] : ''}`;
+
     return (
-        <div className={`${styles.container} ${!count ? styles['border-red'] : ''}`}>
+        <div className={telegramClassName}>
             <TelegramTitle countValue={count}/>
             <TelegramChat
                 clearInput={clearInput}

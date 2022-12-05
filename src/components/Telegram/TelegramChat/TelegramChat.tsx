@@ -3,7 +3,6 @@ import SuperInput from "../../SuperInput/SuperInput";
 import SuperButton from "../../SuperButton/SuperButton";
 import styles from './TelegramChat.module.css'
 
-
 type TelegramChatPropsType = {
     error: string
     messageText: string

@@ -4,11 +4,11 @@ import styles from "./TelegramMessageList.module.css";
 import {useAutoAnimate} from "@formkit/auto-animate/react";
 import TelegramMessage from "./TelegrammMessage/TelegramMessage";
 
-type TelegramMessageList = {
+type TelegramMessageListPropsType = {
     messages: MessageType[]
 }
 
-const TelegramMessageList: React.FC<TelegramMessageList> = ({messages}) => {
+const TelegramMessageList: React.FC<TelegramMessageListPropsType> = ({messages}) => {
     const mappedItem = messages.map(ms => {
         return (
             <TelegramMessage key={ms.id} message={ms}/>
@@ -17,7 +17,7 @@ const TelegramMessageList: React.FC<TelegramMessageList> = ({messages}) => {
     const [list] = useAutoAnimate<HTMLUListElement>()
     return (
         <ul className={styles.list} ref={list}>
-            {mappedItem.length ? mappedItem : <li className={styles.red}>Messages is empty!</li>}
+            {mappedItem.length ? mappedItem : <li className={styles.error}>Messages is empty!</li>}
         </ul>
     );
 };

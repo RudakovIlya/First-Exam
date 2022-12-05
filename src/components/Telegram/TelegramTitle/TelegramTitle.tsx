@@ -6,8 +6,9 @@ type TelegramTitlePropsType = {
 }
 
 const TelegramTitle: React.FC<TelegramTitlePropsType> = ({countValue}) => {
+    const titleClassName = `${styles.title} ${!countValue ? styles['error-title'] : ''}`;
     return (
-        <h1 className={`${styles.title} ${!countValue ? styles.red : ''}`}>{`${countValue ? `Limit ${countValue} messages` : 'Limit exhausted'}`}</h1>
+        <h1 className={titleClassName}>{`${countValue ? `Limit ${countValue} messages` : 'Limit exhausted'}`}</h1>
     );
 };
 
