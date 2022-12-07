@@ -25,3 +25,7 @@
 .like:active svg path {
     fill: #E64646;
 }
+button {
+    background-color: transparent;
+    border: none;
+}
