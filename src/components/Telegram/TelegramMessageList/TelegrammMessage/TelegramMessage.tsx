@@ -1,16 +1,23 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {MessageType} from "../../../../App";
 import styles from './TelegramMessage.module.css'
 
 type TelegramMessagePropsType = {
     message: MessageType
+    changeAmountLikes: (messageID: string, likes: number) => void
 }
 
-const TelegramMessage: React.FC<TelegramMessagePropsType> = ({message: {id, text, likesCount}}) => {
+const TelegramMessage: React.FC<TelegramMessagePropsType> = ({message: {id, text, likesCount}, changeAmountLikes}) => {
     const [like, setLike] = useState<number>(likesCount);
+
     const addLike = () => {
         setLike((prevLike) => prevLike + 1);
     }
+
+    useEffect(() => {
+        changeAmountLikes(id, like);
+    }, [like]);
+
     return (
         <li key={id} className={styles.item}>
             <span>{text}&nbsp;</span>

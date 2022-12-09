@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import {MessageType} from "../../App";
 import SuperButton from "../SuperButton/SuperButton";
 import styles from './Telegram.module.css'
@@ -10,12 +10,16 @@ type TelegramPropsType = {
     addMessage: (text: string) => void
     messages: Array<MessageType>
     deleteMessage: () => void
+    changeAmountLikes: (messageID: string, likes: number) => void
 }
 
 const startValue = 5;
-
-const Telegram: React.FC<TelegramPropsType> = ({addMessage, messages, deleteMessage}) => {
-    const [count, setCount] = useState<number>(startValue);
+const minValue = 0;
+const Telegram: React.FC<TelegramPropsType> = ({addMessage, messages, deleteMessage, changeAmountLikes}) => {
+    const [count, setCount] = useState<number>(() => {
+        const newCount = localStorage.getItem('currentCount');
+        return newCount && messages.length === startValue ? minValue : startValue;
+    });
     const [text, setText] = useState<string>('');
     const [error, setError] = useState('')
 
@@ -50,6 +54,10 @@ const Telegram: React.FC<TelegramPropsType> = ({addMessage, messages, deleteMess
 
     const telegramClassName = `${styles.container} ${!count ? styles['border-error'] : ''}`;
 
+    useEffect(() => {
+        localStorage.setItem('currentCount', JSON.stringify(count));
+    }, [count])
+
     return (
         <div className={telegramClassName}>
             <TelegramTitle countValue={count}/>
@@ -64,7 +72,7 @@ const Telegram: React.FC<TelegramPropsType> = ({addMessage, messages, deleteMess
             <SuperButton disabled={!messages.length} onClick={deleteMessageCallBack} buttonSize={"large"}>delete last
                 message</SuperButton>
             <div>
-                <TelegramMessageList messages={messages}/>
+                <TelegramMessageList messages={messages} changeAmountLikes={changeAmountLikes}/>
             </div>
         </div>
     );
