@@ -37,7 +37,7 @@ const TelegramMessage: React.FC<TelegramMessagePropsType> = ({
     }
 
     return (
-        <li key={id} className={styles.item}>
+        <li id={`message-id-${id}`} className={styles.item}>
             {editMode ?
                 <SuperInput autoFocus onBlur={deActiveViewMode} onChange={onChangeHandler} value={newMessageText}
                             onEnter={deActiveViewMode}/> :

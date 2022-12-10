@@ -21,7 +21,6 @@ const SuperInput: React.FC<SuperInputPropsType> = ({
                                                        onChange,
                                                        id,
                                                        onKeyDown,
-                                                       onBlur,
                                                        ...restProps
                                                    }) => {
 
