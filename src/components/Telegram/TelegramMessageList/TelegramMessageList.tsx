@@ -7,12 +7,24 @@ import TelegramMessage from "./TelegrammMessage/TelegramMessage";
 type TelegramMessageListPropsType = {
     messages: MessageType[]
     changeAmountLikes: (messageID: string, likes: number) => void
+    changeMessageText: (messageID: string, text: string) => void
 }
 
-const TelegramMessageList: React.FC<TelegramMessageListPropsType> = ({messages, changeAmountLikes}) => {
+const TelegramMessageList: React.FC<TelegramMessageListPropsType> = ({
+                                                                         messages,
+                                                                         changeAmountLikes,
+                                                                         changeMessageText
+                                                                     }) => {
     const mappedItem = messages.map(ms => {
+        const changeMessageTextCallback = (text: string) => {
+            changeMessageText(ms.id, text)
+        }
+        const changeAmountLikesCallBack = (likes: number) => {
+            changeAmountLikes(ms.id, likes);
+        }
         return (
-            <TelegramMessage key={ms.id} message={ms} changeAmountLikes={changeAmountLikes}/>
+            <TelegramMessage key={ms.id} message={ms} changeAmountLikes={changeAmountLikesCallBack}
+                             changeMessage={changeMessageTextCallback}/>
         )
     });
     const [list] = useAutoAnimate<HTMLUListElement>()

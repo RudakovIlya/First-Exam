@@ -8,20 +8,31 @@ import TelegramMessageList from "./TelegramMessageList/TelegramMessageList";
 
 type TelegramPropsType = {
     addMessage: (text: string) => void
-    messages: Array<MessageType>
-    deleteMessage: () => void
+    messages: MessageType[]
+    removeLastMessage: () => void
     changeAmountLikes: (messageID: string, likes: number) => void
+    changeMessageText: (messageID: string, text: string) => void
 }
 
 const startValue = 5;
 const minValue = 0;
-const Telegram: React.FC<TelegramPropsType> = ({addMessage, messages, deleteMessage, changeAmountLikes}) => {
+const Telegram: React.FC<TelegramPropsType> = ({
+                                                   addMessage,
+                                                   messages,
+                                                   removeLastMessage,
+                                                   changeAmountLikes,
+                                                   changeMessageText
+                                               }) => {
     const [count, setCount] = useState<number>(() => {
         const newCount = localStorage.getItem('currentCount');
-        return newCount && messages.length === startValue ? minValue : startValue;
+        return newCount && messages.length === startValue ? minValue : startValue - messages.length;
     });
     const [text, setText] = useState<string>('');
     const [error, setError] = useState('')
+
+    useEffect(() => {
+        localStorage.setItem('currentCount', JSON.stringify(count));
+    }, [count])
 
     const onChangeText = (event: ChangeEvent<HTMLInputElement>) => {
         setText(event.currentTarget.value);
@@ -45,18 +56,14 @@ const Telegram: React.FC<TelegramPropsType> = ({addMessage, messages, deleteMess
 
     const deleteMessageCallBack = () => {
         setCount(startValue - (messages.length - 1));
-        deleteMessage();
+        removeLastMessage();
     }
 
     const onEnterCallback = () => {
-        count && addMessageCallBack()
+        count && addMessageCallBack();
     }
 
     const telegramClassName = `${styles.container} ${!count ? styles['border-error'] : ''}`;
-
-    useEffect(() => {
-        localStorage.setItem('currentCount', JSON.stringify(count));
-    }, [count])
 
     return (
         <div className={telegramClassName}>
@@ -72,7 +79,8 @@ const Telegram: React.FC<TelegramPropsType> = ({addMessage, messages, deleteMess
             <SuperButton disabled={!messages.length} onClick={deleteMessageCallBack} buttonSize={"large"}>delete last
                 message</SuperButton>
             <div>
-                <TelegramMessageList messages={messages} changeAmountLikes={changeAmountLikes}/>
+                <TelegramMessageList messages={messages} changeAmountLikes={changeAmountLikes}
+                                     changeMessageText={changeMessageText}/>
             </div>
         </div>
     );

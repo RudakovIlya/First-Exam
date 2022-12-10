@@ -11,35 +11,39 @@ export type MessageType = {
 
 const App: React.FC = () => {
 
-    const [message, setList] = useState<MessageType[]>(() => {
+    const [messages, setList] = useState<MessageType[]>(() => {
         const getMessage = localStorage.getItem('message');
         return getMessage ? JSON.parse(getMessage) : [];
     });
 
     useEffect(() => {
-        localStorage.setItem('message', JSON.stringify(message));
-    }, [message])
+        localStorage.setItem('message', JSON.stringify(messages));
+    }, [messages])
 
     const addMessage = (text: string) => {
-        const newMessage: MessageType = {id: v1(), text, likesCount: 0};
-        setList([newMessage, ...message]);
-    }
+        setList([{id: v1(), text, likesCount: 0}, ...messages]);
+    };
 
-    const deleteLastMessage = () => {
-        setList([...message.slice(0, message.length - 1)])
-    }
+    const removeLastMessage = () => {
+        setList([...messages.slice(0, messages.length - 1)])
+    };
+
+    const changeMessageText = (messageID: string, text: string) => {
+        setList(messages.map(ms => ms.id === messageID ? {...ms, text} : ms));
+    };
 
     const changeAmountLikes = (messageID: string, likes: number) => {
-        setList(message.map(mes => mes.id === messageID ? {...mes, likesCount: likes} : mes))
+        setList(messages.map(mes => mes.id === messageID ? {...mes, likesCount: likes + 1} : mes))
     }
 
     return (
         <div className="App">
             <h1>Telegram</h1>
             <Telegram
-                messages={message}
+                changeMessageText={changeMessageText}
+                messages={messages}
                 addMessage={addMessage}
-                deleteMessage={deleteLastMessage}
+                removeLastMessage={removeLastMessage}
                 changeAmountLikes={changeAmountLikes}
             />
         </div>
