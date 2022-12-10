@@ -25,8 +25,9 @@ const TelegramChat: React.FC<TelegramChatPropsType> = ({
 
     return (
         <div className={styles.input}>
-            <SuperInput error={error} value={messageText} onChange={onChangeText} onEnter={onEnter}/>
-            <SuperButton disabled={countMessage === 0} onClick={addMessageCallback}>send</SuperButton>
+            <SuperInput error={error} value={messageText} onChange={onChangeText} onEnter={onEnter}
+                        disabled={countMessage <= 0}/>
+            <SuperButton disabled={countMessage <= 0} onClick={addMessageCallback}>send</SuperButton>
             <SuperButton onClick={clearInput}>clear</SuperButton>
         </div>
     );
