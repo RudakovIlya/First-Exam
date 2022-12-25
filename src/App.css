@@ -4,8 +4,9 @@
     justify-content: center;
     flex-direction: column;
     min-height: 100%;
+    padding: 0 15px;
 }
 
-h1{
-    color: #5181B8;
+h1 {
+    color: #1976d2;
 }

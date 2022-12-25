@@ -4,7 +4,11 @@
   "private": true,
   "homepage": "https://rudakovilya.github.io/First-Exam",
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@formkit/auto-animate": "^1.0.0-beta.5",
+    "@mui/icons-material": "^5.10.16",
+    "@mui/material": "^5.10.17",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",

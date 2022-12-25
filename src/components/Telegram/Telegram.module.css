@@ -1,18 +1,18 @@
 .container {
-    border: 3px solid #5181B8;
-    border-radius: 16px;
+    /*    border: 3px solid #5181B8;*/
+    border-radius: 5px;
     padding: 15px;
     min-height: 360px;
-    background-color: #ffffff;
+    background-color: #f5f5f5;
     overflow: hidden;
 }
 
 .border-error {
-    border: 3px solid #E64646;
+    border: 3px solid #d32f2f;;
 }
 
 .title {
-    color: #5181B8;
+    color: #1976d2;
 }
 
 
