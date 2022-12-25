@@ -2,7 +2,7 @@
   "name": "exam",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://rudakovilya.github.io/First-Exam",
+  "homepage": "https://rudakovilya.github.io/simple-project",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
